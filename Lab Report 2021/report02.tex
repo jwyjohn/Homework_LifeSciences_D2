@@ -1,0 +1,67 @@
+\newpage
+\section{Report 02: Experiment design}
+
+\subsection*{2021-03-18}
+
+
+\subsection{Introduction}
+In this session, we discussed about the experiments that will be done next, with more details. 
+The research route is illustrated below.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      %\includegraphics[width=.4\linewidth]{image1}
+      \begin{tikzpicture}[node distance=10pt]
+        \node[draw, rounded corners]                (A1)  {Prepare $Eyeful$ model};
+        \node[draw, rounded corners, below=of A1]   (A2)  {Add POPs};
+        \node[draw, rounded corners ,below=of A2]   (A3)  {Observe and count};
+        \node[draw, rounded corners ,below=of A3]   (A4)  {RT-qPCR, Western blot,HPLC/GC, etc.};
+    
+        \draw[->] (A1) -- (A2);
+        \draw[->] (A2) -- (A3);
+        \draw[->] (A3) -- (A4);
+      \end{tikzpicture}
+      \caption{$Eyeful$ model}
+      \label{fig:sub1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      %\includegraphics[width=.4\linewidth]{image1}
+      \begin{tikzpicture}[node distance=10pt]
+        \node[draw, rounded corners]                (A0)  {Prepare $Ras^{v12/Ig}$ model};
+        \node[draw, rounded corners, below=of A0]   (A1)  {Cross the flies};
+        \node[draw, rounded corners, below=of A1]   (A2)  {Add POPs};
+        \node[draw, rounded corners, below=of A2]   (A3)  {Dissect and observe};
+        \node[draw, rounded corners, below=of A3]   (A4)  {RT-qPCR, Western blot,HPLC/GC, etc.};
+    
+        \draw[->] (A0) -- (A1);
+        \draw[->] (A1) -- (A2);
+        \draw[->] (A2) -- (A3);
+        \draw[->] (A3) -- (A4);
+      \end{tikzpicture}
+      \caption{$Ras^{v12/Ig}$ model}
+      \label{fig:sub2}
+    \end{subfigure}
+    \caption{Scheme of the experiments}
+    \label{fig:test}
+\end{figure}
+
+\subsection{Our \textit{Drosophila} models}
+To study the potential impact of POPs on tumor migration, we used two well established models.
+
+\subsubsection{$Eyeful$ model}
+One of the two models is the $Eyeful$ flies\cite{ferres2006epigenetic}, which will be crossed with the \textit{w1118} flies. 
+Since $Eyeful$  flies have distinct phenotype that indicates whether there is a tumor migration, 
+it is a desirable model for this study. 
+Moreover $Eyeful$ flies can be used to study the effect of POPs on different generations.
+
+
+\subsubsection{$Ras^{v12/Ig}$ model}
+The other model is the $Ras^{v12/Ig}$ model. Dissection is needed in 3rd pupa,
+and with GFP, this model can produce more accurate information about the migration of tumor cells.
+However, this model is used by crossing two stocks, and the larva can not survive the 3rd period.
+
+\subsection{Results \& Discussion}
+
+In this section, we talked with the tutor about the scheme of the experiments that will be done this term. In short, \textbf{preparation of model \textit{Drosophila} will be the first part of the experiments, and the most crucial part is the POPs treatment of the models}. With properly treated models, subsequential measurement could be done, for example, the qPCR, Western bolt or even HPLC/GC, etc.

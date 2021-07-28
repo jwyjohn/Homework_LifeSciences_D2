@@ -1,0 +1,46 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[en,black,12pt,normal]{elegantpaper}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{hyperref}
+
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{Bioinformatics Practical Final Report:\\Revisit Aplastic Anemia}
+\author{WenYuan Jiang\\ID: 1951510}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{\today}
+\lstset{basicstyle=\footnotesize\ttfamily,language=R}
+\AtBeginEnvironment{lstlisting}{\linespread{0.75}\selectfont}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\textbf{OBJECTIVE}: We want to demonstrate the skills learnt in this courses by performing a systematical bioinformatics analysis on aplastic anemia. We also aim to reproduce some of the analysis done by previous studies using the same data and similar techniques, and provide insight into this disease.\\
+\textbf{RESULTS}: 1) Previous literature suggested a T cell-mediated autoimmune disorder of the hematopoietic system in aplastic anemia patients. 2) Transcriptomics analysis of CD3+ T-cell reveals that platelet factor 4 is related to aplastic anemia pathophysiology. 3) Platelet factor 4 has sequence homology with some chemokine family members. 4) Platelet factor 4 and other CXC chemokine related genes are differently expressed in CD3+ T-cell of aplastic anemia patients. 5) Platelet factor 4 is cleaved into a short form and binds heparin with high affinity. 6) Immunosupressive agent Prednisone has less affinity to PF4, compared with heparin.\\
+\textbf{CONCLUSION}: We successfully applied most of what we have learnt in this course to analyse the disease. The analysis indicates that platelet factor 4 in CD3+ cell is related to Aplastic Anemia, and the current immunosupressive treatment of this disease may not affect platelet factor 4 activity directly. 
+\keywords{Aplastic Anemia, Review, Bioinformatics, Transcriptomics, Course Final}
+\end{abstract}
+
+
+\tableofcontents
+
+\input{Introduction}
+\input{Materials_and_Methods}
+\input{Results}
+\input{Discussion}
+\input{Conclusions}
+\input{Acknowledgment}
+\input{Supplementary_Materials}
+
+\bibstyle{unsrt}
+\bibliography{references}{}
+
+
+\end{document}

@@ -1,0 +1,184 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[en,black,11pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{Practical 2 Retrieving Biological Information (continued)}
+\author{WenYuan Jiang\\ID: 1951510}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{March 19, 2021}
+
+\begin{document}
+
+\maketitle
+
+
+\section{OMIM}
+\subsection{\textit{Briefly summarize the recent advances in Alzheimer disease or another disease you interested in.}}
+Data retrieved from \url{https://www.omim.org/entry/104300} on Mar 19, 2021.
+
+Early in 1907, Alzheimer provided the first report of the disease. 
+The study of this disease continued during the times, and here are some recent advances.
+
+Rovelet-Lecrux et al. (2006) reasoned that the APP locus located on chromosome 21q21 might be affected by gene dosage alterations in a subset of demented individuals.
+
+Tesseur et al. (2006) found significantly decreased levels of TGF-beta receptor type II (TGFBR2; 190182) in human AD brain compared to controls; the decrease was correlated with pathologic hallmarks of the disease.
+
+Counts et al. (2007) found a 60\% increase in CHRNA7 (118511) mRNA levels in cholinergic neurons of the nucleus basalis in patients with mild to moderate Alzheimer disease compared to those with mild cognitive impairment or normal controls.
+\section{Uniprot}
+\subsection{\textit{Write down the shortest sequence and the longest sequence and their length.}}
+The following data is retrieved on \texttt{Mar 19, 2021} for \texttt{UniProtKB}.\upcite{uniprot2021uniprot}
+The query is \lstinline{query=*&sort=length&desc=no}.
+\begin{itemize}
+    \item The shortest sequence 1
+    
+    \subitem Entry: \texttt{P83570}
+    \subitem Name: \texttt{Neuropeptide GWa}
+    \subitem Length: \texttt{2}
+    
+    \item The shortest sequence 2
+    \subitem Entry: \texttt{P0DPR3}
+    \subitem Name: \texttt{T cell receptor delta diversity 1}
+    \subitem Length: \texttt{2}
+
+    \item The longest sequence:
+    
+    \subitem Entry: \texttt{A0A5A9P0L4}
+    \subitem Name: \texttt{Peptidylprolyl isomerase}
+    \subitem Length: \texttt{45,354}
+\end{itemize}
+\subsection{\textit{How many entries are encoded on a mitochondrion, how many are encoded on a plasmid, and how many entries are encoded on a plastid?}}
+\subsection{\textit{Search UniProtKB，use ACE2 as a query key. How many results are listed? How many entries have been reviewed? How many not?}}
+\begin{table}[H]
+    \caption{\textbf{Search result: ACE2 as a query key in UniProtKB}}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        Result Type&Entry Number\\
+        \midrule
+        Listed results&846\\
+        Reviewed results&100\\
+        Un-Reviewed results&746\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{Note:Data retrieved in Mar 19, 2021, from \url{https://www.uniprot.org/uniprot/?query=ACE2&sort=score}}
+\end{table}
+
+
+\subsection{\textit{Restrict term ‘ACE2’ to protein name,}}
+\subsubsection{\textit{How many reviewed entries?}}
+There are 2 reviewed entries, whose names are \texttt{ACE2\_CANAL} and \texttt{ACE2\_CANGA}.
+\subsection{\textit{Choose the reviewed human ACE2 protein.}}
+Data retrieved in Mar 19, 2021, from \url{https://www.uniprot.org/uniprot/Q9BYF1}
+\subsubsection{\textit{What’s the length of this protein?}}
+There are two isoforms of this protein, Isoform 1 has the length of 805, and Isoform 2 is 459 in length.
+\subsubsection{\textit{How does this protein work?}}
+\textit{
+Essential counter-regulatory carboxypeptidase of the renin-angiotensin hormone system that is a critical regulator of blood volume, systemic vascular resistance, and thus cardiovascular homeostasis (PubMed:27217402).
+Converts angiotensin I to angiotensin 1-9, a nine-amino acid peptide with anti-hypertrophic effects in cardiomyocytes, and angiotensin II to angiotensin 1-7, which then acts as a beneficial vasodilator and anti-proliferation agent, counterbalancing the actions of the vasoconstrictor angiotensin II (PubMed:10969042, PubMed:10924499, PubMed:11815627, PubMed:19021774, PubMed:14504186). 
+Also removes the C-terminal residue from three other vasoactive peptides, neurotensin, kinetensin, and des-Arg bradykinin, but is not active on bradykinin (PubMed:10969042, PubMed:11815627). Also cleaves other biological peptides, such as apelins (apelin-13, [Pyr1]apelin-13, apelin-17, apelin-36), casomorphins (beta-casomorphin-7, neocasomorphin) and dynorphin A with high efficiency (PubMed:11815627, PubMed:27217402, PubMed:28293165). In addition, ACE2 C-terminus is homologous to collectrin and is responsible for the trafficking of the neutral amino acid transporter SL6A19 to the plasma membrane of gut epithelial cells via direct interaction, regulating its expression on the cell surface and its catalytic activity (PubMed:18424768, PubMed:19185582).}
+
+\subsubsection{\textit{Which family does it belong to?}}
+In general, this protein belongs to the \textbf{Peptidase} family. Note that in different databases, such as \texttt{Pfam} or \texttt{InterPro},
+the family name is slightly different.
+
+\subsubsection{\textit{Which kind of modification will happen to this protein after translation?}}
+The modifications of this protein is shown in the following table.
+
+\begin{table}[H]
+    \caption{\textbf{ACE2\_HUMAN modifications}}
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        Feature key&Position(s)&Description\\
+        \midrule
+        Glycosylation&53,90,103,322,432,546,690&N-linked (GlcNAc...) asparagine\\
+        Disulfide bond&133-141,344-361,530-542&-\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{Note:Data retrieved in Mar 19, 2021, from \url{https://www.uniprot.org/uniprot/Q9BYF1#ptm_processing}, adapted from the original table.}
+\end{table}
+
+
+\subsubsection{\textit{Where does it locate?}}
+This protein is a \textbf{Secreted protein}, which locates in extracellular space, cell membrane and cytoplasm.
+
+\subsubsection{\textit{What diseases does it link to?}}
+
+It is linked to human coronavirus SARS-CoV-2, according to the \texttt{Pathology} section of the record.
+
+\subsubsection{\textit{In the GO section, how many parts of information are contained? What are they?}}
+
+In the GO section, two major parts of information with more than 26 specific records are contained.
+A brief list of the contained information is shown below, and more detailed records can be found in \texttt{QuickGO} database.
+
+\begin{itemize}
+    \item GO - Molecular function
+    \subitem carboxypeptidase activity
+    \subitem endopeptidase activity
+    \subitem metallocarboxypeptidase
+    \subitem metallopeptidase activity
+    \subitem peptidyl-dipeptidase activity
+    \subitem virus receptor activity
+    \subitem zinc ion binding
+    \item GO - Biological process
+    \subitem angiotensin maturation
+    \subitem angiotensin-mediated drinking behavior
+    \subitem negative regulation of signaling receptor activity
+    \subitem positive regulation of amino acid transport
+    \subitem positive regulation of cardiac muscle contraction
+    \subitem positive regulation of gap junction assembly
+    \subitem positive regulation of L-proline import across plasma membrane
+    \subitem positive regulation of reactive oxygen species metabolic process
+    \subitem receptor-mediated virion attachment to host cell
+    \subitem regulation of blood vessel diameter
+    \subitem regulation of cardiac conduction
+    \subitem regulation of cell population proliferation
+    \subitem regulation of cytokine production
+    \subitem regulation of inflammatory response
+    \subitem regulation of systemic arterial blood pressure by renin-angiotensin
+    \subitem regulation of transmembrane transporter activity
+    \subitem regulation of vasoconstriction
+    \subitem tryptophan transport
+    \subitem viral entry into host cell
+\end{itemize}
+
+\subsubsection{\textit{On the ACE2 protein sequence, which part interact with DNA？Show the graphical view.}}
+
+No DNA binding site is reported till Mar 19, 2021 in this record in \texttt{UniProtKB}.
+
+\subsubsection{\textit{From which databases can we get the three-dimension structure of this protein?}}
+We can get the three-dimension structure of this protein from the following databases.
+\begin{itemize} 
+    \item SMRi
+    \item ModBasei
+    \item PDBe-KBi
+\end{itemize}
+
+\subsubsection{\textit{If you want to know the function of this protein in pathway, which database would you check?}}
+
+\begin{itemize} 
+    \item PathwayCommons
+    \item Reactome
+    \item SABIO-RK
+    \item SIGNOR
+\end{itemize}
+
+\subsubsection{\textit{Is there any drug targeted on ACE2? Please list them.}}
+
+\begin{itemize} 
+    \item Chloroquine
+    \item Hydroxychloroquine
+    \item N-(2-Aminoethyl)-1-aziridineethanamine
+    \item SPP1148
+\end{itemize}
+
+
+\bibstyle{unsrt}
+\bibliography{references}{}
+\end{document}

@@ -1,0 +1,78 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{课堂作业\\Explore KEGG, IntAct, Reactome}
+\author{姜文渊\\1951510}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{2021年3月19日}
+
+\begin{document}
+
+\maketitle
+
+
+\section{问题}
+\subsection*{问：}
+
+\textit{Explore KEGG, IntAct, Reactome.}
+
+\textit{Tell the differences between them.}
+
+\subsection*{答：}
+
+\subsection{KEGG}
+\textit{KEGG is a database resource for understanding \textbf{high-level functions} and utilities of the biological system...}\upcite{kanehisa2000kegg}
+
+The first impression of KEGG is an old-fashioned user interface with fine designed drawings and manually curated records.
+
+KEGG’s art style changed little during the past ten years, which is like from classical times. 
+The database, from my perspective, is meant for human reading rather than for batch process of data-driven tasks.
+
+\subsection{IntAct}
+\textit{IntAct provides a freely available, open source database system and analysis tools for \textbf{molecular interaction} data.}\upcite{orchard2014mintact}
+
+IntAct has its style which can be described as STANDARD. 
+The visualization of the data is not that straightforward, and most data is presented in a table form.
+
+Data table, as a data form, has its advantage over unstructured data, 
+but is not friendly for ordinary users (especially those in the wet lab).
+
+\subsection{Reactome}
+\textit{Our goal is to provide \textbf{intuitive} bioinformatics tools for the \textbf{visualization, interpretation and analysis of pathway knowledge} to support basic research, genome analysis, modeling, systems biology and education. }\upcite{fabregat2018reactome}
+
+Interactive features of Reactome brings \textbf{immersive data-explore experience} for users who are not in the field bioinformatics. 
+
+It is knowledge oriented, with coarse-grained fine-grained mixing together, while in the meantime, 
+the data are \textbf{hierarchical} organized.
+
+Large scale data mining of this database is also easy, since to download structured data is just few clicks away.
+
+\subsection{Summary}
+Difference and features of the three databases are shown in the table below.
+Note that most of the comments are subjective opinions of the student.
+\begin{table}[H]
+    \caption{\textbf{KEGG, IntAct and Reactome}}
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        Feature&KEGG&IntAct&Reactome\\
+        \midrule
+        Interactive UI&-&-&+\\
+        Structured data table&+&+&-\\
+        Manual annotation&+&+&+\\
+        Open Source&-&-&+\\
+        Convenient data download&-&+&+\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\bibstyle{unsrt}
+\bibliography{references}{}
+\end{document}

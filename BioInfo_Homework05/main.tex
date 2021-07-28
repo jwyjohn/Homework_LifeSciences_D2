@@ -1,0 +1,107 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{生物信息学作业05}
+\author{姜文渊\\1951510}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{2021年4月25日}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{请解释BLAST算法快速高效的原因}
+
+Blast\upcite{altschul1990basic}算法采用的是一种\textbf{启发式}算法。
+
+简要来说，BLAST的流程和每一步的时间复杂度如下：
+\begin{enumerate}
+    \item 将query序列打断成子片段，称之为seed words，$O(m)$
+    \item 将seed与预先索引好的序列进行比对，$O(1)$
+    \item 选择seed连续打分较高的位置采用动态规划算法进行延伸，$O(mn)\leq O\leq O(n^2)$
+    \item 延伸过程也会进行打分，当打分低于某一限度这一延伸过程就会被终止抛弃
+    \item 产生了一系列的高得分序列，使用E-value对其显著性进行评估，选出比对结果最好的序列
+\end{enumerate}
+$n$为数据库大小，$m$为query序列的长度。
+在一般情况下，有$n\ggg m$，故平均来看，$O(n)$是BLAST的时间复杂度。
+即其查询时间和数据库大小的一次方成正比。
+
+由于BLAST是启发式算法，故很难得到其时间复杂度的精确表达式。
+相比于逐个序列进行pairwise比对，BLAST的seed的优化虽说是常数级别的优化，但对于一个长度为7的核苷酸word，
+从概率的角度来看，其可以仅进行$1/16384$的pairwise对比。而对于每一组pairwise对比，由于seeding的优化，
+其计算量也会在$O(m^2)$的基础上进行一个极大的常数的优化。故而可以达到较快的速度。
+
+此外，BLAST对于数据库里的序列的处理，如预先建立hash表等索引，去除简单重复序列等，也对速度有极大的贡献。
+
+\section{请解释S score, bit score, E value, P value的区别}
+
+\subsection{S score}
+S score 的定义如下式所示：
+
+\begin{equation}
+S=\sum_{i=1}^{L} s_{r_{1,i},r_{2,i}}
+\end{equation}
+$s_{i,j}$ 是打分矩阵中的元素。
+
+S score是一种朴素的用于评估序列的生物学相关性的值，其含义与Similarity和Identity类似，
+不具有统计学上特殊的含义。
+
+\subsection{Bit score}
+Bit score 的定义如下式所示：
+
+\begin{equation}
+S^\prime =\frac{\lambda S-ln K}{ln2} 
+\end{equation}
+$S$是原始分数。 参数$\lambda$和$K$取决于打分矩阵和空位罚分。
+
+在BLAST中，Bit score是以bit表示的归一化分数。Bit score的概念与序列相似性较为类似，Bit score越大，序列相似性越高。
+Bit score的统计学的含义在于，当你在其所代表大小量级的数据库里进行搜索时，能够依概率得到所查询序列。
+
+我拿出来N个随机序列，这N条序列序列中能够找出像目前这种相似性的序列。最后再取$log_2$得到的值。因此，Bit score越大，这种相似性出现的概率就会越低，这种概率是随着Bit score的值的增加呈指数变化的。
+这里可以看出Bitscore的值是不依赖于比对使用的数据库的大小的。
+
+例如，如果Bit score是30，则为了依概率匹配到所查询序列，数据库的大小大概为$2^{30}\approx10^{9}$条序列。
+
+
+\subsection{E value}
+E value 的定义如下式所示：
+
+\begin{equation}
+E=mn2^{-S^\prime }
+\end{equation}
+$m,n$是常数，与查询序列的大小和数据库大小相关。
+
+
+E value（expectation value）是一个对Bit score值进行校正之后的值，这个校正的因素主要是在于考虑到的数据库的大小，因为数据库较大的话产生阳性的概率也会很大。
+E value的内在含义是：在一次blast分析过程中，query序列与subject序列有N个hit，根据我们的N来确定E value，也就是在一个随机序列中（随机库的大小与数据库相同），
+有多少个hit能够被发现（所谓hit的概念就是能够和当前的query和subject的比对结果一致或者好于当前的query和subject的比对结果）。
+这里E value衡量的相关参数有两个影响因素需要考虑：数据库的大小以及随机库，由于是随机库所以对于同一个数据库多次blast的结果可能会出现不一样，但是保守的序列的E value值应该是近似的。
+
+\subsection{P value}
+P value 的定义如下式所示：
+
+\begin{equation}
+Pval_S^{MSP}=Ke^{\lambda S}=2^{-S^\prime}
+\end{equation}
+从上面的式子可以看出，E value是对P value的一个修正。
+
+P value是事件偶然发生的概率。在BLAST的情况下，与S score相关的P value是偶然获得的分数$x$至少等于$S$的概率，
+即$Pval_S=P(x\geq S)$。
+
+
+\bibstyle{unsrt}
+\bibliography{references}{}
+\end{document}

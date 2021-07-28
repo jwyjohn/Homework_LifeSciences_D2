@@ -1,0 +1,137 @@
+%!TEX program = xelatex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{subfigure}
+
+
+
+
+\title{Chia币P盘调优杂谈}
+\author{w1118}
+\institute{Group of Dmel Research, School of Life Science, Tongji University}
+%\version{1.00}
+\date{\zhtoday}
+
+\begin{document}
+
+\maketitle
+
+\section{什么是Chia币}
+【略，自己去查。】
+
+\section{Chia在\date{\zhtoday}的收益情况}
+下面讨论已经p好的盘在\date{\zhtoday}的收益情况。
+\begin{itemize}
+    \item 日平均收益：1640.403USD/PB
+    \item 换算为更亲民的单位：每日10.6 CNY/TB
+\end{itemize}
+
+\subsection{乐观估计}
+在不考虑全网算力增长和币价波动的情况下，一块2T二手的机械硬盘（成本约180CNY）每天可以带来21元的收益。
+
+\subsection{悲观估计}
+考虑到全网算力按指数增长，对一个月的算力情况进行拟合，平均每日算力增长\textbf{1.098}倍。
+假定币价不变，利用等比数列求和可知，一块2T二手的机械硬盘共可带来\textbf{110}元的收入，去除成本，纯收益30元。
+在这种情况下，约2月后收入就几乎不增长了。此时折价以130元的价格售出这块2T硬盘，
+2个月的周期内净收益的悲观估计为60元，等价的年化收益率为203\%。
+
+\section{p盘的几个阶段}
+\begin{enumerate}
+    \item 计算生成 7 张哈希表，主要使用的算法是前向传播。这一步要处理大量的运算，占用 CPU 最为密集。其实这一步已经生成了足以支持 Proof of Space 的全部数据，只不过效率欠佳，所以还需要后续步骤处理。
+    \item 用反向传播算法来清理一遍上面的 7 张哈希表，去除不必要的哈希值，并给表排序。这一步占用 CPU 也较为密集。
+    \item 对上一步的结果进行压缩，并将大部分表合并起来。从这一步开始，对 CPU 的消耗降到了较低水平，对内存的占用仍维持在高位，但缓存盘的占用开始逐步下降。
+    \item 把剩余的表继续压缩成最终的文件格式，并把文件从缓存盘转移到目标位置。这一步是唯一对目标磁盘进行 IO 操作的。
+\end{enumerate}
+
+\section{浅谈调优思路}
+调优主要针对两大内容，一是CPU性能，一是IO占用率，通常来说，除了购买新的硬件，两者的上限几乎无法改变。
+因而调优的任务在于，使得CPU与IO能够最大程度地配合，减少资源的浪费。
+由于各人的硬件设备不能一概而论，所以调优的上限相差较大。
+但是，如果合理进行调优，一些常见的硬件可以获得约30\%的提升。
+
+\subsection{获得硬件信息}
+Win用户可以通过设备管理器和各类测评软件了解其硬件的型号和性能。
+Linux用户可以通过\lstinline{lscpu}，\lstinline{lsblk}，\lstinline{free}等工具了解其硬件的规格。
+
+需要注意的是以下几个方面：
+\begin{itemize}
+    \item CPU核心数与线程数
+    \item CPU单核性能（下面以CPU-Z跑分为简单判定的指标）
+    \item 内存大小
+    \item HDD的容量和数量
+    \item SSD的容量，读写性能，寿命
+\end{itemize}
+
+除了这些硬性参数以外，还要注意设备的散热性能和工作条件，特别是对于机械硬盘，还需避免震动。
+
+\subsection{需要用SSD作为缓存吗}
+
+在\date{\zhtoday}，市面上大多数的消费级固态的寿命都不足以完成P盘的任务，
+因而除非您的固态是企业级的SLC、MLC或3D Xpoint，不建议为了短期的挖矿行为而损耗日常使用的固态硬盘的寿命。
+
+\textbf{除了SSD作为缓存外，对于拥有阵列卡的用户，利用廉价的机械硬盘组成RAID0作为缓存盘是十分合适的。}
+
+\subsection{关键：确定并行P盘的个数}
+
+对于并行P盘个数的上限，笔者和室友经过测试，\textbf{有以下经验公式（仅适用于k=32的plot）}：
+\begin{itemize}
+    \item 并行P盘个数的上限=内存GB数/4
+    \item 并行P盘个数的上限=线程数
+    \item 不使用SSD作为缓存的情况下：并行P盘个数的上限=HDD数*2（每个HDD两个P盘队列）
+    \item 使用SSD作为缓存：并行P盘个数的上限=SSD容量/300
+\end{itemize}
+笔者不推荐使用SSD作为缓存，故而在实际操作中，上面的三条中的最小值为推荐的同时P盘个数。
+
+
+\subsection{更加精细的操作}
+
+\subsubsection{HDD的内圈与外圈}
+
+一般而言，HDD在进行顺序读写时，内圈速度仅是外圈速度的0.7倍，\textbf{故而对于每块HDD，可划分一个600G的分区，使之在靠外圈的位置（扇区靠前），作为缓存分区。
+临时文件储存到缓存分区，最终文件储存到另一个分区，即可使IO效率提高。}
+
+\subsubsection{IO调度的调优}
+
+Win下进行IO调度的调优比较不方便，这里主要讨论Linux的情况。
+
+常见的Linux发行版通常会带有三种IO调度器：
+\begin{itemize}
+    \item Noop算法
+    \item Deadline算法
+    \item CFQ算法
+\end{itemize}
+
+在新的内核版本中，Deadline算法和CFQ算法都被其对应的多队列的变种所取代（mq-deadline和bfq）。
+对于调度器的理论，这里不赘述，仅说明以下测试的结论。
+
+\textbf{HDD使用CFQ或BFQ，对于P盘效率较好。}
+
+
+\section{两个例子}
+
+\subsection{方案一：桌面ITX大小的p盘机器}
+配置要点：
+\begin{itemize}
+    \item CPU: i5 11400 6C12T 超频至4.2GHz (一定要水冷)
+    \item RAM: 16G DDR4 3200MHz
+    \item HDD: 6*HGST 4T SATA
+    \item P盘策略：一个HDD同时进行两个P盘任务，共12个任务并行
+\end{itemize}
+性能：一天约P可以生成1.2T的plot文件。
+
+\subsection{方案二：洋垃圾p盘机器}
+配置要点：
+\begin{itemize}
+    \item CPU: QL1M *2 32C64T 1.8GHz
+    \item RAM: 128G DDR4 2666MHz
+    \item HDD: 16*HGST 4T SATA 使用两块SATA转PCIE扩展卡，配合主板SATA接口
+    \item P盘策略：一个HDD同时进行两个P盘任务，共32个任务并行
+\end{itemize}
+性能：一天约P可以生成3T的plot文件。
+
+\section{特别感谢}
+
+感谢JWY和GYF提供的测试平台与测评数据，愿诸位挖矿顺利。
+
+\end{document}

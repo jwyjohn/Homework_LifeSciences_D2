@@ -1,0 +1,36 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[en,black,12pt,normal]{elegantpaper}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{url}
+\lstset{basicstyle=\footnotesize\ttfamily,frame=single}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{Final Report\\Revisit Metal-responsive transcription factor-1 (MTF-1)}
+\author{WenYuan Jiang\\ID: 1951510\thanks{Undergraduate, F409, School of Life Science, Tongji University, Email: 1951510@tongji.edu.cn}}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{May 7, 2021}
+%\lstset{basicstyle=\footnotesize\ttfamily}
+\AtBeginEnvironment{lstlisting}{\linespread{0.75}\selectfont}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+\textbf{OBJECTIVE}: We want to demonstrate the skills learnt in this courses by performing a systematical bioinformatics analysis on teh gene MTF-1. We also aim to reproduce some of the analysis done by previous studies using the same data and similar techniques, and provide insight into this gene.\\
+\textbf{RESULTS}: 1) equence of MTF-1 is conserved in different organisms. 2) MTF-1 may be an unstable hydrophilic protein. 3) MTF-1 has nuclear localization signal and zinc finger domains whichhelp it to bind metal response elements. 4) A consensus sequence named metal response elements can be foundin a certain set of genes. 5) Expression of a certain set of genes with metal response elements maybe regulated by MTF-1. \\
+\textbf{CONCLUSION}: We successfully applied most of what we have learnt in this course to analyse the disease. The analysis indicates that platelet factor 4 in CD3+ cell is related to Aplastic Anemia, and the current immunosupressive treatment of this disease may not affect platelet factor 4 activity directly. 
+\keywords{Metal-responsive transcription factor-1, \textit{in silico} analysis ,Coursework}
+\end{abstract}
+\input{Introduction}
+\input{Methods_and_Data}
+\input{Results}
+\input{Discussion}
+\input{Supplementary}
+%\input{toDEL}
+\bibstyle{unsrt}
+\bibliography{references}{}
+\end{document}

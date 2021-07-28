@@ -1,0 +1,90 @@
+File: main.tex
+Encoding: ascii
+Words in text: 170
+Words in headers: 8
+Words outside text (captions, etc.): 11
+Number of headers: 2
+Number of floats/tables/figures: 0
+Number of math inlines: 0
+Number of math displayed: 0
+
+File: Introduction.tex
+Encoding: ascii
+Words in text: 539
+Words in headers: 8
+Words outside text (captions, etc.): 0
+Number of headers: 3
+Number of floats/tables/figures: 0
+Number of math inlines: 0
+Number of math displayed: 0
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  170+1+0 (1/0/0/0) Section: Introduction
+  69+3+0 (1/0/0/0) Subsection: Overview of MTF-1
+  300+4+0 (1/0/0/0) Subsection: Discovery of the MTF-1
+
+File: Methods_and_Data.tex
+Encoding: ascii
+Words in text: 204
+Words in headers: 30
+Words outside text (captions, etc.): 6
+Number of headers: 8
+Number of floats/tables/figures: 1
+Number of math inlines: 0
+Number of math displayed: 0
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+3+0 (1/0/0/0) Section: Methods and data
+  28+2+0 (1/0/0/0) Subsection: Data source
+  32+3+0 (1/0/0/0) Subsection: Multiple sequence alignment
+  45+3+6 (1/1/0/0) Subsection: Phylogenetic tree building
+  27+4+0 (1/0/0/0) Subsection: Protein physicochemical property prediction
+  17+4+0 (1/0/0/0) Subsection: Nuclear localization signal prediction
+  29+9+0 (1/0/0/0) Subsection: DNA binding site prediction for Cys2His2 zinc finger proteins
+  26+2+0 (1/0/0/0) Subsection: Transcriptome analysis
+
+File: Results.tex
+Encoding: ascii
+Words in text: 906
+Words in headers: 65
+Words outside text (captions, etc.): 44
+Number of headers: 6
+Number of floats/tables/figures: 8
+Number of math inlines: 0
+Number of math displayed: 0
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+1+0 (1/0/0/0) Section: Results
+  202+8+12 (1/2/0/0) Subsection: Sequence of MTF-1 is conserved in different organisms.
+  93+7+14 (1/2/0/0) Subsection: MTF-1 may be an unstable hydrophilic protein.
+  157+17+13 (1/3/0/0) Subsection: MTF-1 has nuclear localization signal and zinc finger domains which help it to bind metal response elements.
+  149+16+5 (1/1/0/0) Subsection: A consensus sequence named metal response elements can be found in a certain set of genes.
+  305+16+0 (1/0/0/0) Subsection: Expression of a certain set of genes with metal response elements may be regulated by MTF-1.
+
+File: Discussion.tex
+Encoding: ascii
+Words in text: 325
+Words in headers: 2
+Words outside text (captions, etc.): 0
+Number of headers: 1
+Number of floats/tables/figures: 0
+Number of math inlines: 0
+Number of math displayed: 0
+
+Total
+Words in text: 2144
+Words in headers: 113
+Words outside text (captions, etc.): 61
+Number of headers: 20
+Number of floats/tables/figures: 9
+Number of math inlines: 0
+Number of math displayed: 0
+Files: 5
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  170+8+11 (2/0/0/0) File(s) total: main.tex
+  539+8+0 (3/0/0/0) File(s) total: Introduction.tex
+  204+30+6 (8/1/0/0) File(s) total: Methods_and_Data.tex
+  906+65+44 (6/8/0/0) File(s) total: Results.tex
+  325+2+0 (1/0/0/0) File(s) total: Discussion.tex
+

@@ -1,0 +1,193 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{生物信息学作业}
+\author{姜文渊\\1951510}
+\institute{School of Life Science, Tongji University}
+%\version{1.00}
+\date{2021年3月5日}
+
+\begin{document}
+
+\maketitle
+
+
+\section{问题1}
+\subsection*{问：}
+
+\textit{What's the latest amount of data for PubMed, OMIM and GenBank databases?}
+
+\subsection*{答：}
+
+截至\today，题目中所要求答三个数据库（PubMed\upcite{canese2013pubmed}, OMIM\upcite{hamosh2005online} and GenBank\upcite{benson2012genbank}）的数据量如下表所示。
+
+表1为各数据库数据量的概览，以占用的硬盘空间为表征，可以直观地展现各数据库的数据量大小。
+\begin{table}[H]
+    \caption{\textbf{PubMed, OMIM和GenBank的数据量概览}}
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        数据库&占用字节数\\
+        \midrule
+        PubMed&35.53Gb\\
+        OMIM（仅索引）&883.23Kb\\
+        GenBank&12.12Tb\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{注：2021年3月更新，PubMed与GenBank数据来自\url{https://www.ncbi.nlm.nih.gov/public/}\\OMIM数据仅为索引大小，来自\url{https://www.omim.org/static/omim/data/mim2gene.txt}}
+\end{table}
+可以看出这三种性质不同的数据库其数据量有着数量级上的差异，形成这种差异的原因与其收录的数据范围和标准，以及数据的来源相关。
+在三个数据库中，OMIM所占空间最小，因为其收录的数据范围较狭窄，而且数据均需人工审核标注。
+GenBank所占空间最大，原因在于高通量测序技术可以源源不断地为其提供大量测序数据，而且其收录的数据范围较广。
+
+表2-4为各数据库的数据量的更详细的信息，由于各数据库的数据组织形式不同，故而表格的结构也不相同。
+\begin{table}[H]
+    \caption{\textbf{PubMed的数据量（Baseline）}}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        记录类型&条目数\\
+        \midrule
+        2020年新增&1,514,199\\
+        总量&31,563,992\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{注：数据截至2020年底，数据来源于\url{https://www.nlm.nih.gov/bsd/licensee/baselinestats.html}}
+    \\\tiny{一个更概括性的版本见\url{https://www.nlm.nih.gov/bsd/medline_pubmed_production_stats.html}}
+\end{table}
+
+\begin{table}[H]
+    \caption{\textbf{OMIM的数据量}}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        记录类型&条目数\\
+        \midrule
+        基因概述&16,430\\
+        基因于表型合集&28\\
+        表型描述（分子机制已知）&6,015\\
+        表型描述或位点（分子机制未知）&1,528\\
+        其他杂项&1,762\\
+        合计&25,763\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{注：2021年3月3日更新，数据来源于\url{https://www.omim.org/statistics/entry}}
+\end{table}
+
+\begin{table}[H]
+    \caption{\textbf{GenBank的数据量}}
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        发布日期&碱基数&序列条数\\
+        \midrule
+        &\textit{最新数据}&\\
+        2021年2月&776,291,211,106&226,241,476\\
+        \midrule
+        &\textit{历史数据}&\\
+        2010年2月&112,326,229,652&116,461,672\\
+        2000年2月&58,05,414,935&5,691,170\\
+        1990年3月&40,127,752&33,377\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{注：数据截至2021年2月，数据来源于\url{https://www.ncbi.nlm.nih.gov/genbank/statistics/}}
+\end{table}
+
+在GenBank数据库的数据量里，除了最新数据外，也展示了一些历史时期的数据量，可以直观看出数据量的变化趋势，可见其几乎是指数增长。
+而对于像OMIM一类的数据库，由于其数据主要来自于人工标注审核，与GenBank的相对自动化产生数据的速度不可同日而语，
+故而增长相对较慢。
+
+
+
+
+\section{问题2}
+\subsection*{问：}
+
+\textit{Explore NCBI database, choose 2 other database you are interested to explore details.}
+
+\textit{Give a summary of them.}
+
+\subsection*{答：}
+
+下面主要从该数据库的历史、收录的数据类型，数据体量，应用的领域等方面介绍PubChem和Taxonomy两个数据库，
+并给出查找所需信息的例子。
+
+\subsection{PubChem\upcite{kim2016pubchem}}
+
+\subsubsection{简介}
+PubChem是收录物质的化学结构及其生物化学性质的的数据库，主要包含三个部分：Substance, Compound和BioAssay。
+相比于其他收录化学物质的数据库，如ChemBook等，PubChem更加倾向与生物方向，其收录的物质性质与生物研究是密切相关的。
+\subsubsection{历史}
+PubChem开始于2004年，是NIH Molecular Libraries Roadmap Initiative（即NIH分子图书馆路线图计划）的一部分。
+该计划旨在通过高通量筛选可调节基因产物活性的小分子来发现化学探针。
+\subsubsection{收录数据类型及总量}
+顾名思义，PubChem收录的基本内容是各类化学物质。
+组成PubChem的三个部分（Substance, Compound和BioAssay）很好得说明了其收录数据的类型。
+Substance中收录的是物质的理化和生化性质，如分子量，熔沸点，可溶性，在生物体中的作用，相关文献等。
+Compound收录化学结构，如分子的结构式和三维结构。
+BioAssay收录有关化合物的实验的文献。具体的收录数量如下表。
+\begin{table}[H]
+    \caption{\textbf{PubChem的数据量}}
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        类别&收录条目数\\
+        \midrule
+        Substances&270,640,501\\
+        Compounds&109,800,333\\
+        BioAssays&1,229,056\\
+        \bottomrule
+    \end{tabular}
+    \\\tiny{注：数据截至2021年2月，数据来源于\url{https://pubchemdocs.ncbi.nlm.nih.gov/statistics}}
+\end{table}
+\subsubsection{应用}
+PubChem主要可以用于与小分子相关的研究，尤其是药物筛选和设计等方向。
+此外，对于生物的代谢等的研究也会使用到众多小分子的理化与生化性质，PubChem也是极为有用的数据库。
+\subsubsection{查找信息的例子}
+例如，查找阿司匹林的相关信息，可以直接输入Asprin即可查询到相关页面，
+也可以输入其IUPAC名称2-acetyloxybenzoic acid进行查询。
+
+一个十分方便到功能是，如果只知道一个物质的结构，可以选择Draw Structure功能，绘制结构式进行查询。
+如果是其没有收录的物质，也会查到相似的物质，以提供研究所需的信息。
+
+值得注意的是，PubChem中的很多条目中如果没有实测的实验数据，一些性质是通过计算化学的方式预测的，
+使用时应当谨慎。
+
+\subsection{Taxonomy\upcite{federhen2012ncbi}}
+
+\subsubsection{简介}
+The NCBI Taxonomy database即NCBI分类标准数据库，主要为际核苷酸序列数据库合作组织(Nucleotide Sequence Database Collaboration, INSDC)
+所收录的核酸序列
+收录对应的命名(nomenclature)和分类(classification)信息。
+该数据库由NCBI的学者们手动管理，
+使用最新的分类学文献来维护序列数据库中的系统发育分类学信息。
+该数据库旨在使用户能方便地分类核酸序列（及其来源的生物）。
+\subsubsection{历史}
+Taxonomy数据库开始与1991年，和NCBI开发的Entrez\upcite{schuler199610}系统几乎是同时诞生的。
+当时，组成国际核苷酸序列数据库合作组织（INSDC）的GenBank，EMBL和DDBJ都分别在各自的序列条目中维护对应的分类学信息。
+在Entrez被使用之前，核酸和蛋白的数据库并没有很好地连接，关于蛋白的数据库，如Swiss-Prot和PIR，也各自维护其分类学信息。
+Entrez被NCBI开发和使用，加上INSDC成立之后，分类学数据库得到了统一，也就成了现在的Taxonomy数据库。
+\subsubsection{收录数据类型及总量}
+Taxonomy数据库收录数据的基本单位为物种和分类学单位（界门纲目科属种等）。
+对于一个物种，其对应的分类学位置会被准群收录，其核酸和蛋白的链接也会被收录。
+
+截至2021年3月，该数据库共收录条目689,614条（各类分类学单位和物种名称），均为手动标注审阅的数据。
+\subsubsection{应用}
+Taxonomy数据库除了方便动物学、植物学、生态学、博物学、古生物学等领域的学者查找分类学信息外，
+同时也是将核酸数据、蛋白数据等进行聚类的重要依据。
+\subsubsection{查找信息的例子}
+例如，笔者在实验室使用的模式生物是果蝇，直接搜索\textit{Drosophila melanogaster}，即可获得该物种的分类学信息。
+如果搜索\textit{Drosophila}，则可以获得关于\textit{Drosophila}的众多分类学条目。
+
+除了使用其了解分类学知识外，对于在GenBank中查找到的序列，可以方便地点击Taxonomy了解该核酸序列来源生物的分类学信息，
+从而可以了解与之同科的物种，为研究提供思路。
+
+\bibstyle{unsrt}
+\bibliography{references}{}
+\end{document}

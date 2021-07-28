@@ -1,0 +1,273 @@
+\section*{Supplementary Materials}
+
+\subsection*{Literature used as data source}
+\begin{itemize}
+    \item Franzke A, Geffers R, Hunger JK, Pförtner S et al. Identification of novel regulators in T-cell differentiation of aplastic anemia patients. BMC Genomics 2006 Oct 19;7:263. PMID: 17052335
+    \item Doi T. [Transcription factors responsible for megakaryocyte-specific gene expression]. Yakugaku Zasshi. 2005 Sep;125(9):685-97. Japanese. doi: 10.1248/yakushi.125.685. PMID: 16141689.
+    \item Okada Y, Watanabe M, Nakai T, Kamikawa Y, Shimizu M, Fukuhara Y, Yonekura M, Matsuura E, Hoshika Y, Nagai R, Aird WC, Doi T. RUNX1, but not its familial platelet disorder mutants, synergistically activates PF4 gene expression in combination with ETS family proteins. J Thromb Haemost. 2013 Sep;11(9):1742-50. doi: 10.1111/jth.12355. PMID: 23848403.
+\end{itemize}
+
+\subsection*{Computing envrionment}
+\begin{lstlisting}
+> sessionInfo()
+R version 4.0.5 (2021-03-31)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.2 LTS
+
+Matrix products: default
+BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+ [1] stats4    grid      parallel  stats     graphics 
+ [6] grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] pathview_1.30.1        clusterProfiler_3.18.1
+ [3] topGO_2.42.0           SparseM_1.81          
+ [5] GO.db_3.12.1           graph_1.68.0          
+ [7] org.Hs.eg.db_3.12.0    AnnotationDbi_1.52.0  
+ [9] IRanges_2.24.1         S4Vectors_0.28.1      
+[11] DOSE_3.16.0            maptools_1.1-1        
+[13] sp_1.4-5               factoextra_1.0.7      
+[15] ggplot2_3.3.3          FactoMineR_2.4        
+[17] VennDiagram_1.6.20     futile.logger_1.4.3   
+[19] pheatmap_1.0.12        umap_0.2.7.0          
+[21] limma_3.46.0           GEOquery_2.58.0       
+[23] Biobase_2.50.0         BiocGenerics_0.36.1   
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1         shadowtext_0.0.8    
+  [3] backports_1.2.1      fastmatch_1.1-0     
+  [5] plyr_1.8.6           igraph_1.2.6        
+  [7] splines_4.0.5        BiocParallel_1.24.1 
+  [9] digest_0.6.27        htmltools_0.5.1.1   
+ [11] GOSemSim_2.16.1      viridis_0.6.1       
+ [13] fansi_0.5.0          magrittr_2.0.1      
+ [15] memoise_2.0.0        cluster_2.1.1       
+ [17] openxlsx_4.2.3       Biostrings_2.58.0   
+ [19] readr_1.4.0          graphlayouts_0.7.1  
+ [21] matrixStats_0.59.0   askpass_1.1         
+ [23] enrichplot_1.10.2    colorspace_2.0-1    
+ [25] blob_1.2.1           ggrepel_0.9.1       
+ [27] haven_2.4.1          xfun_0.23           
+ [29] dplyr_1.0.6          RCurl_1.98-1.3      
+ [31] crayon_1.4.1         jsonlite_1.7.2      
+ [33] scatterpie_0.1.6     glue_1.4.2          
+ [35] polyclip_1.10-0      gtable_0.3.0        
+ [37] zlibbioc_1.36.0      XVector_0.30.0      
+ [39] car_3.0-10           Rgraphviz_2.34.0    
+ [41] abind_1.4-5          scales_1.1.1        
+ [43] futile.options_1.0.1 DBI_1.1.1           
+ [45] rstatix_0.7.0        Rcpp_1.0.6          
+ [47] viridisLite_0.4.0    reticulate_1.20     
+ [49] flashClust_1.01-2    foreign_0.8-81      
+ [51] bit_4.0.4            DT_0.18             
+ [53] httr_1.4.2           htmlwidgets_1.5.3   
+ [55] fgsea_1.16.0         RColorBrewer_1.1-2  
+ [57] ellipsis_0.3.2       XML_3.99-0.6        
+ [59] pkgconfig_2.0.3      farver_2.1.0        
+ [61] utf8_1.2.1           tidyselect_1.1.1    
+ [63] labeling_0.4.2       rlang_0.4.11        
+ [65] reshape2_1.4.4       munsell_0.5.0       
+ [67] cellranger_1.1.0     tools_4.0.5         
+ [69] cachem_1.0.5         downloader_0.4      
+ [71] cli_2.5.0            generics_0.1.0      
+ [73] RSQLite_2.2.7        broom_0.7.6         
+ [75] stringr_1.4.0        fastmap_1.1.0       
+ [77] bit64_4.0.5          tidygraph_1.2.0     
+ [79] zip_2.2.0            purrr_0.3.4         
+ [81] KEGGREST_1.30.1      ggraph_2.0.5        
+ [83] formatR_1.11         KEGGgraph_1.50.0    
+ [85] DO.db_2.9            leaps_3.1           
+ [87] xml2_1.3.2           compiler_4.0.5      
+ [89] rstudioapi_0.13      curl_4.3.1          
+ [91] png_0.1-7            ggsignif_0.6.1      
+ [93] tibble_3.1.2         tweenr_1.0.2        
+ [95] stringi_1.6.2        RSpectra_0.16-0     
+ [97] forcats_0.5.1        lattice_0.20-41     
+ [99] Matrix_1.3-2         vctrs_0.3.8         
+[101] pillar_1.6.1         lifecycle_1.0.0     
+[103] BiocManager_1.30.15  bitops_1.0-7        
+[105] data.table_1.14.0    cowplot_1.1.1       
+[107] qvalue_2.22.0        R6_2.5.0            
+[109] gridExtra_2.3        rio_0.5.26          
+[111] lambda.r_1.2.4       MASS_7.3-53.1       
+[113] assertthat_0.2.1     openssl_1.4.4       
+[115] withr_2.4.2          hms_1.1.0           
+[117] tidyr_1.1.3          rvcheck_0.1.8       
+[119] carData_3.0-4        ggpubr_0.4.0        
+[121] ggforce_0.3.3        scatterplot3d_0.3-41
+[123] tinytex_0.32        
+\end{lstlisting}
+
+The student's hardware running the analysis is a SuperMicro Chassis with \lstinline{Xeon Gold 5117 @2.00GHz} and \lstinline{128GB DDR4@2133MHz RAM}. \textbf{For those who have an RAM less than 64GB, it may be difficult to reproduce the results of the analysis.}
+
+\subsection*{Code for identifying differently expressed genes}
+\begin{lstlisting}
+#   Differential expression analysis with limma
+library(Biobase)
+library(GEOquery)
+library(limma)
+library(umap)
+library(pheatmap)
+library(dplyr)
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library("FactoMineR")
+library("factoextra")
+library("maptools")
+
+
+# load series and platform data from GEO
+
+gset <- getGEO("GSE3807", GSEMatrix =TRUE, AnnotGPL=TRUE)
+if (length(gset) > 1) idx <- grep("GPL96", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# make proper column names to match toptable 
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+# group membership for all samples
+gsms <- "00000011"
+sml <- strsplit(gsms, split="")[[1]]
+
+# log2 transformation
+ex <- exprs(gset)
+qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC <- (qx[5] > 100) ||
+  (qx[6]-qx[1] > 50 && qx[2] > 0)
+if (LogC) { ex[which(ex <= 0)] <- NaN
+exprs(gset) <- log2(ex) }
+
+# assign samples to groups and set up design matrix
+gs <- factor(sml)
+groups <- make.names(c("patients","Healthy"))
+levels(gs) <- groups
+gset$group <- gs
+design <- model.matrix(~group + 0, gset)
+colnames(design) <- levels(gs)
+
+fit <- lmFit(gset, design)  # fit linear model
+
+# set up contrasts of interest and recalculate model coefficients
+cts <- c(paste(groups[1],"-",groups[2],sep=""))
+cont.matrix <- makeContrasts(contrasts=cts, levels=design)
+fit2 <- contrasts.fit(fit, cont.matrix)
+
+# compute statistics and table of top significant genes
+fit2 <- eBayes(fit2, 0.01)
+tT <- topTable(fit2, adjust="fdr", sort.by="B", number=250)
+
+tT <- subset(tT, select=c("ID","adj.P.Val","P.Value","t","B","logFC","Gene.symbol","Gene.title"))
+write.table(tT, file=stdout(), row.names=F, sep="\t")
+
+# Visualize and quality control test results.
+# Build histogram of P-values for all genes. Normal test
+# assumption is that most genes are not differentially expressed.
+tT2 <- topTable(fit2, adjust="fdr", sort.by="B", number=Inf)
+hist(tT2$adj.P.Val, col = "grey", border = "white", xlab = "P-adj",
+     ylab = "Number of genes", main = "P-adj value distribution")
+
+# summarize test results as "up", "down" or "not expressed"
+dT <- decideTests(fit2, adjust.method="fdr", p.value=0.05)
+
+# Venn diagram of results
+vennDiagram(dT, circle.col=palette())
+
+# create Q-Q plot for t-statistic
+t.good <- which(!is.na(fit2$F)) # filter out bad probes
+qqt(fit2$t[t.good], fit2$df.total[t.good], main="Moderated t statistic")
+
+# volcano plot (log P-value vs log fold change)
+colnames(fit2) # list contrast names
+ct <- 1        # choose contrast of interest
+volcanoplot(fit2, coef=ct, main=colnames(fit2)[ct], pch=20,
+            highlight=length(which(dT[,ct]!=0)), names=rep('+', nrow(fit2)))
+
+# MD plot (log fold change vs mean log expression)
+# highlight statistically significant (p-adj < 0.05) probes
+plotMD(fit2, column=ct, status=dT[,ct], legend=F, pch=20, cex=1)
+abline(h=0)
+
+################################################################
+# General expression data analysis
+ex <- exprs(gset)
+
+# box-and-whisker plot
+ord <- order(gs)  # order samples by group
+palette(c("#1B9E77", "#7570B3", "#E7298A", "#E6AB02", "#D95F02",
+          "#66A61E", "#A6761D", "#B32424", "#B324B3", "#666666"))
+par(mar=c(7,4,2,1))
+title <- paste ("GSE3807", "/", annotation(gset), sep ="")
+boxplot(ex[,ord], boxwex=0.6, notch=T, main=title, outline=FALSE, las=2, col=gs[ord])
+legend("topleft", groups, fill=palette(), bty="n")
+
+# expression value distribution
+par(mar=c(4,4,2,1))
+title <- paste ("GSE3807", "/", annotation(gset), " value distribution", sep ="")
+plotDensities(ex, group=gs, main=title, legend ="topright")
+
+# UMAP plot (dimensionality reduction)
+ex <- na.omit(ex) # eliminate rows with NAs
+ex <- ex[!duplicated(ex), ]  # remove duplicates
+ump <- umap(t(ex), n_neighbors = 4, random_state = 123)
+par(mar=c(3,3,2,6), xpd=TRUE)
+plot(ump$layout, main="UMAP plot, nbrs=4", xlab="", ylab="", col=gs, pch=20, cex=1.5)
+legend("topright", inset=c(-0.15,0), legend=levels(gs), pch=20,
+       col=1:nlevels(gs), title="Group", pt.cex=1.5)
+library("maptools")  # point labels without overlaps
+pointLabel(ump$layout, labels = rownames(ump$layout), method="SANN", cex=0.6)
+
+# mean-variance trend, helps to see if precision weights are needed
+plotSA(fit2, main="Mean variance trend, GSE3807")
+\end{lstlisting}
+
+\subsection*{Code for drawing heat map}
+\begin{lstlisting}
+annotation_col = data.frame(
+Type = factor(rep(c("Patient", "Healthy"),c(6,2)))
+)
+colnames(annotation_col)<-c("Sample")
+pheatmap(scale(ex[which(row.names(ex) %in% row.names(tT)),]),border=F,show_rownames=F,show_colnames=F,legend = F,annotation_col = annotation_col)
+\end{lstlisting}
+\subsection*{Code for principal component analysis}
+\begin{lstlisting}
+res.pca <- PCA(t(scale(ex[which(row.names(ex) %in% row.names(tT)),])))
+fviz_pca_ind(res.pca,col.ind = rep(c('Patient','Healthy'),c(6,2)),repel = T, legend.title = "Groups")
+\end{lstlisting}
+
+\subsection*{Code for GO enrichment}
+\begin{lstlisting}
+output <- bitr(tT[which(tT['logFC']<0),]$Gene.symbol,
+fromType = 'SYMBOL',
+toType = c('ENTREZID','ENSEMBL','REFSEQ'),
+OrgDb = 'org.Hs.eg.db')
+ego_cc<-enrichGO(gene = output$ENSEMBL,
+OrgDb  = org.Hs.eg.db,
+keyType = 'ENSEMBL',
+ont  = "CC",
+pAdjustMethod = "BH",
+pvalueCutoff = 0.01,
+qvalueCutoff = 0.05)
+dotplot(ego_cc,title="EnrichmentGO")
+\end{lstlisting}
+
+\subsection*{Online tools and databases used}
+\begin{itemize}
+    \item PubMed \url{https://pubmed.ncbi.nlm.nih.gov/}
+    \item NCBI BLASTp \url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}
+    \item CDD/SPARCLE \url{https://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi}
+    \item CDART Conserved Domain Architecture Retrieval Tool \url{https://www.ncbi.nlm.nih.gov/Structure/lexington/docs/cdart_about.html}
+    \item RCSB PDB \url{https://www.rcsb.org/}
+    \item ZINC AC \url{https://zinc.docking.org/}
+    \item Swissdock \url{http://www.swissdock.ch/}
+    \item neXtprot \url{https://www.nextprot.org/}
+\end{itemize}
